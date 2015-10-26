@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>导航</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/TweenLite.js"></script>
+<script>
+	//alert(document.getElementsByTagName('dl')); //返回NodeList
+$(function(){
+
+	function yKing(yKing){
+		var dlLength = yKing.find('dl').length;	//获取当前dl的数量
+		this.ddHeight = 30;	//dd的高度
+		this.dtHeight = 25; //dt的高度
+
+		var ddHeight = this.ddHeight;
+		var dtHeight = this.dtHeight;
+		
+		yKing.find('dl').height(ddHeight);//设置dl的高度
+		
+		//添加鼠标移入事件
+		yKing.find('dl').bind('mouseover',mouseoverdl);
+		function mouseoverdl(e){
+			var currentNum = $(this).find('dt').length;	//当前触发的dt数量
+			var dlHeightEnd = ddHeight + dtHeight * currentNum;//鼠标移入之后的高度
+			//鼠标移到的dl高度增加
+			tweenHeight($(this)[0],dlHeightEnd);
+			
+		}
+		
+		yKing.find('dl').bind('mouseout',mouseoutdl);
+		function mouseoutdl(e){
+			var dlHeightEnd = ddHeight;
+			tweenHeight($(this)[0],dlHeightEnd);
+		}
+				
+		function tweenHeight(tweenObj,attr){
+			TweenLite( tweenObj,0.5 ,{ height:attr, ease:Easing.Circ.easeOut});
+		}
+	}
+	var ykk = $("#yKing");
+	var yk = new yKing(ykk);
+
+});
+</script>
+<style>
+*{margin:0;padding:0;}
+#yKing{background:#ccc;width:200px;height:auto;}
+#yKing a{color:#fff;display:block;width:200px;height:30px;}
+#yKing dl{width:200px;height:auto;overflow:hidden;text-align:center;background:#266410;border-top:1px solid #358818;border-bottom:1px solid #112c07;position:relative;left:0;}
+#yKing dl dt{height:25px;line-height:25px;font-size:12px;color:#ccc;}
+#yKing dl dt:hover{background:#08741f;}
+#yKing dl dd{height:30px;line-height:30px;}
+</style>
+</head>
+<body>
+<div id="yKing">
+	<dl id="yKing0">
+		<dd id="yKing0"><a href="###">首页</a></dd>
+			<dt><a href="###">首页达人</a></dt>
+			<dt><a href="###">首页达人</a></dt>
+	</dl>
+	<dl id="yKing1">
+		<dd><a href="###">青奥</a></dd>
+			<dt><a href="###">青奥小主播</a></dt>
+			<dt><a href="###">青奥达人</a></dt>
+			<dt><a href="###">青奥达人</a></dt>
+	</dl>
+	<dl id="yKing2">
+		<dd><a href="###">美食</a></dd>
+			<dt><a href="###">美食名人</a></dt>
+			<dt><a href="###">美食沙龙</a></dt>
+			<dt><a href="###">美食宝贝</a></dt>
+	</dl>
+	<dl id="yKing3">
+		<dd><a href="###">旅游</a></dd>
+			<dt><a href="###">旅游圣地</a></dt>
+			<dt><a href="###">旅游新闻</a></dt>
+			<dt><a href="###">旅游伴侣</a></dt>
+			<dt><a href="###">旅游伴侣</a></dt>
+	</dl>
+	<dl id="yKing4">
+		<dd><a href="###">婚庆</a></dd>
+			<dt><a href="###">婚嫁服务</a></dt>
+			<dt><a href="###">婚嫁商铺</a></dt>
+			<dt><a href="###">婚嫁喜宴</a></dt>
+			<dt><a href="###">婚嫁喜宴</a></dt>
+			<dt><a href="###">婚嫁喜宴</a></dt>
+	</dl>
+</div>
+</body>
+</html>
